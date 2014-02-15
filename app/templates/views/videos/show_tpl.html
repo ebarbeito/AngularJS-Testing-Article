@@ -21,7 +21,7 @@
     <h1>{{ video.title }}</h1>
   </header>
   <div class="app-youtube-embed">
-    <iframe width="900" height="500" src="{{ video.embedUrl }}" frameborder="0" allowfullscreen></iframe>
+    <iframe type="text/html" width="900" height="500" ng-src="{{ trustSrc(video.embedUrl) }}" allowfullscreen frameborder="0"></iframe>
   </div>
 
   <div class="app-youtube-related">

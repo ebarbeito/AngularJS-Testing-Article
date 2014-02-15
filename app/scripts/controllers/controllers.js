@@ -72,7 +72,7 @@ angular.module('App.Controllers', [])
     $scope.onReady();
   }])
 
-  .controller('VideoCtrl', ['$appYoutubeSearcher','$compile', '$rootScope', '$routeParams', '$scope',function($youtube, $compile, $rootScope, $params, $scope) {
+  .controller('VideoCtrl', ['$appYoutubeSearcher','$compile', '$rootScope', '$routeParams', '$scope', '$sce', function($youtube, $compile, $rootScope, $params, $scope, $sce) {
     var id = $params.id;
     $youtube.findVideo(id, true, function(id, video) {
       $scope.video_id = id;
@@ -86,5 +86,9 @@ angular.module('App.Controllers', [])
         $scope.related = videos;
         if(!$scope.$$phase) $scope.$apply();
       });
+      
+      $scope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(src);
+      }
     });
   }]);
